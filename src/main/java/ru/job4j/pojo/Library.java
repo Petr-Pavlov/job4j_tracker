@@ -2,13 +2,12 @@ package ru.job4j.pojo;
 
 public class Library {
     public static void main(String[] args) {
-        Book book1 = new Book();
-        Book book2 = new Book();
-        Book book3 = new Book();
-        Book book4 = new Book();
+        Book book1 = new Book("Clean Code",500);
+        Book book2 = new Book("Essentials", 350);
+        Book book3 = new Book("Work Book", 754);
+        Book book4 = new Book("Clean Code 2", 681);
 
         Book[] collection = new Book[]{book1, book2, book3, book4};
-        book1.setName("Clean Code");
         Library.printAll(collection);
 
         Book temp = collection[0];
@@ -17,7 +16,7 @@ public class Library {
         Library.printAll(collection);
 
         for(Book book : collection) {
-            if (book.getName() != null && book.getName().equals("Clean Code")) {
+            if (book.getName().equals("Clean Code")) {
                 System.out.println(book);
             }
         }
