@@ -99,8 +99,10 @@ public class StartUITest {
     @Test
     public void WhenByNameAction() {
         Output out = new StubOutput();
-        Input in = new StubInput(new String[]{"0", "123", "1"});
         Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Found item"));
+        Input in = new StubInput(new String[]{"0", item.getName(), "1"});
+        String message = item.toString();
         UserAction[] actions = {
                 new FindByNameAction(out),
                 new ExitAction()
@@ -111,7 +113,7 @@ public class StartUITest {
                         "0. Find Items by Name" + System.lineSeparator() +
                         "1. Exit Program" + System.lineSeparator() +
                         "=== Find items by name ====" + System.lineSeparator() +
-                        "Заявки с именем: 123 не найдены." + System.lineSeparator() +
+                        message + System.lineSeparator() +
                         "Menu:" + System.lineSeparator() +
                         "0. Find Items by Name" + System.lineSeparator() +
                         "1. Exit Program" + System.lineSeparator()
@@ -121,8 +123,11 @@ public class StartUITest {
     @Test
     public void WhenByIdAction() {
         Output out = new StubOutput();
-        Input in = new StubInput(new String[]{"0", "1", "1"});
         Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Found item"));
+        String id = Integer.toString(item.getId());
+        Input in = new StubInput(new String[]{"0", id, "1"});
+        String message = item.toString();
         UserAction[] actions = {
                 new FindByIdAction(out),
                 new ExitAction()
@@ -133,7 +138,7 @@ public class StartUITest {
                         "0. Find Item by Id" + System.lineSeparator() +
                         "1. Exit Program" + System.lineSeparator() +
                         "=== Find item by id ====" + System.lineSeparator() +
-                        "Заявка с введенным id: 1 не найдена." + System.lineSeparator() +
+                        message + System.lineSeparator() +
                         "Menu:" + System.lineSeparator() +
                         "0. Find Item by Id" + System.lineSeparator() +
                         "1. Exit Program" + System.lineSeparator()
