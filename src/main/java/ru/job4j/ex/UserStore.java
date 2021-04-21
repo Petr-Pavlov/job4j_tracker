@@ -5,7 +5,7 @@ import java.sql.SQLOutput;
 public class UserStore {
     public static User findUser(User[] users, String login) throws UserNotFoundException {
         for (User temp : users) {
-            if (!temp.getUserName().equals(login)) {
+            if (temp.getUserName().equals(login)) {
                 return temp;
             }
         }
@@ -13,7 +13,7 @@ public class UserStore {
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        if (user.isValid() || user.getUserName().length() < 3) {
+        if (!user.isValid() || user.getUserName().length() < 3) {
             throw new UserInvalidException("User is not valid");
         }
         return true;
@@ -28,12 +28,10 @@ public class UserStore {
             if (validate(user)) {
                 System.out.println("This user has an access");
             }
-        }
-        catch (UserInvalidException e) {
-            System.out.println("User not found");
-        }
-        catch (UserNotFoundException e) {
+        } catch (UserInvalidException e) {
             System.out.println("User not valid");
+        } catch (UserNotFoundException e) {
+            System.out.println("User not found");
         }
     }
 }
