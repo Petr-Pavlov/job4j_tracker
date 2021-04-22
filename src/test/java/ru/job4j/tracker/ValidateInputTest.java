@@ -35,15 +35,12 @@ public class ValidateInputTest {
         String[] data = {"2", "4", "6"};
         Input in = new StubInput(data);
         ValidateInput input = new ValidateInput(out, in);
-        int selected = input.askInt("Enter menu:");
-        int expected = Integer.parseInt(data[0]);
-        assertThat(selected, is(expected));
-        selected = input.askInt("Enter menu:");
-        expected = Integer.parseInt(data[1]);
-        assertThat(selected, is(expected));
-        selected = input.askInt("Enter menu:");
-        expected = Integer.parseInt(data[2]);
-        assertThat(selected, is(expected));
+        int selected1 = input.askInt("Enter menu:");
+        int selected2 = input.askInt("Enter menu:");
+        int selected3 = input.askInt("Enter menu:");
+        assertThat(selected1, is(Integer.parseInt(data[0])));
+        assertThat(selected2, is(Integer.parseInt(data[1])));
+        assertThat(selected3, is(Integer.parseInt(data[2])));
     }
 
     @Test
